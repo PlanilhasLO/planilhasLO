@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanilhasLO - Ferramentas de Gestão</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        header { background: #1b4d3e; color: white; padding: 40px 20px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { margin: 0; font-size: 36px; }
+        header p { margin: 10px 0 0 0; opacity: 0.9; }
+        
+        /* Estilo da Vitrine em Grade */
+        .vitrine { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 10px; }
+        
+        /* Card do Produto */
+        .produto-card { background: white; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
+        .produto-card h3 { margin-top: 0; color: #1b4d3e; font-size: 20px; }
+        .produto-card p { color: #666; font-size: 14px; line-height: 1.5; height: 70px; }
+        .preco { font-size: 26px; font-weight: bold; color: #27ae60; margin: 15px 0; }
+        
+        /* Formulário e Botão */
+        .input-email { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        .btn-comprar { background: #27ae60; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn-comprar:hover { background: #219152; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PlanilhasLO</h1>
+        <p>Ferramentas de Gestão Descomplicadas para o seu Negócio</p>
+    </header>
+
+    <main class="vitrine">
+        
+        <!-- PRODUTO 1 -->
+        <div class="produto-card">
+            <div>
+                <h3>Fluxo de Caixa Empresarial</h3>
+                <p>Controle suas entradas e saídas diárias, organize contas a pagar e veja o saldo operacional do mês.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 39,90</div>
+                <input type="email" id="email-fluxo" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" onclick="iniciarCompra('Fluxo de Caixa', 'email-fluxo')">Comprar via Pix</button>
+            </div>
+        </div>
+
+        <!-- PRODUTO 2 -->
+        <div class="produto-card">
+            <div>
+                <h3>Precificação para Hamburgueria</h3>
+                <p>Monte fichas técnicas automatizadas, calcule custos de insumos e descubra o preço ideal de venda do seu lanche.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 29,90</div>
+                <input type="email" id="email-hamburgueria" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" onclick="iniciarCompra('Precificação para Hamburgueria', 'email-hamburgueria')">Comprar via Pix</button>
+            </div>
+        </div>
+
+        <!-- PRODUTO 3 -->
+        <div class="produto-card">
+            <div>
+                <h3>Controle de Estoque e Vendas</h3>
+                <p>Gerencie a entrada de mercadorias, avise quando um produto estiver acabando e registre suas vendas diárias.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 34,90</div>
+                <input type="email" id="email-estoque" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" onclick="iniciarCompra('Controle de Estoque', 'email-estoque')">Comprar via Pix</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function iniciarCompra(nomeProduto, idInputEmail) {
+            const email = document.getElementById(idInputEmail).value;
+            if(!email) {
+                alert('Por favor, digite seu e-mail para receber o produto!');
+                return;
+            }
+            alert('Perfeito! O site agora vai chamar a API do Mercado Pago para gerar o Pix da planilha de "' + nomeProduto + '" para o e-mail: ' + email);
+        }
+    </script>
+
+</body>
+</html>
