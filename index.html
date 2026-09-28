@@ -1,0 +1,138 @@
+index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanilhasLO - Ferramentas de Gestão</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        header { background: #1b4d3e; color: white; padding: 40px 20px; border-radius: 8px; margin-bottom: 30px; }
+        header h1 { margin: 0; font-size: 36px; }
+        header p { margin: 10px 0 0 0; opacity: 0.9; }
+        .vitrine { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 10px; }
+        .produto-card { background: white; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
+        .produto-card h3 { margin-top: 0; color: #1b4d3e; font-size: 20px; }
+        .produto-card p { color: #666; font-size: 14px; line-height: 1.5; height: 70px; }
+        .preco { font-size: 26px; font-weight: bold; color: #27ae60; margin: 15px 0; }
+        .input-email { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        .btn-comprar { background: #27ae60; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn-comprar:hover { background: #219152; }
+        
+        /* Área onde o Pix vai aparecer na tela */
+        .area-pix { margin-top: 20px; padding: 15px; background: #e8f8f5; border: 1px dashed #27ae60; border-radius: 8px; display: none; text-align: center; }
+        .codigo-copia-cola { width: 100%; padding: 8px; background: white; border: 1px solid #ccc; font-family: monospace; font-size: 12px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PlanilhasLO</h1>
+        <p>Ferramentas de Gestão Descomplicadas para o seu Negócio</p>
+    </header>
+
+    <main class="vitrine">
+        
+        <!-- PRODUTO 1 -->
+        <div class="produto-card">
+            <div>
+                <h3>Fluxo de Caixa Empresarial</h3>
+                <p>Controle suas entradas e saídas diárias, organize contas a pagar e veja o saldo operacional do mês.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 39,90</div>
+                <input type="email" id="email-fluxo" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" id="btn-fluxo" onclick="iniciarCompra('Fluxo de Caixa', 'email-fluxo', 39.90, 'btn-fluxo')">Comprar via Pix</button>
+                <div id="pix-fluxo" class="area-pix">
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <textarea id="texto-fluxo" class="codigo-copia-cola" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUTO 2 -->
+        <div class="produto-card">
+            <div>
+                <h3>Precificação para Hamburgueria</h3>
+                <p>Monte fichas técnicas automatizadas, calcule custos de insumos e descubra o preço ideal de venda do seu lanche.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 29,90</div>
+                <input type="email" id="email-hamburgueria" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" id="btn-hamburgueria" onclick="iniciarCompra('Precificação para Hamburgueria', 'email-hamburgueria', 29.90, 'btn-hamburgueria')">Comprar via Pix</button>
+                <div id="pix-hamburgueria" class="area-pix">
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <textarea id="texto-hamburgueria" class="codigo-copia-cola" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRODUTO 3 -->
+        <div class="produto-card">
+            <div>
+                <h3>Controle de Estoque e Vendas</h3>
+                <p>Gerencie a entrada de mercadorias, avise quando um produto estiver acabando e registre suas vendas diárias.</p>
+            </div>
+            <div>
+                <div class="preco">R$ 34,90</div>
+                <input type="email" id="email-estoque" class="input-email" placeholder="Seu e-mail para receber">
+                <button class="btn-comprar" id="btn-estoque" onclick="iniciarCompra('Controle de Estoque', 'email-estoque', 34.90, 'btn-estoque')">Comprar via Pix</button>
+                <div id="pix-estoque" class="area-pix">
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <textarea id="texto-estoque" class="codigo-copia-cola" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        async function iniciarCompra(nomeProduto, idInputEmail, precoProduto, idBotao) {
+            const email = document.getElementById(idInputEmail).value;
+            const botao = document.getElementById(idBotao);
+            
+            if(!email) {
+                alert('Por favor, digite seu e-mail para receber o produto!');
+                return;
+            }
+
+            botao.innerText = "Gerando Pix...";
+            botao.disabled = true;
+
+            try {
+                // Envia os dados para o seu servidor backend (server.js)
+                const resposta = await fetch('/api/criar-pix', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, produto: nomeProduto, preco: precoProduto })
+                });
+
+                const dados = await resposta.json();
+
+                if (dados.error) {
+                    alert('Erro ao gerar Pix: ' + dados.error);
+                    botao.innerText = "Comprar via Pix";
+                    botao.disabled = false;
+                    return;
+                }
+
+                // Esconde o botão de compra e mostra o código Pix gerado
+                botao.style.display = "none";
+                
+                const idAreaPix = idBotao.replace('btn-', 'pix-');
+                const idTextoPix = idBotao.replace('btn-', 'texto-');
+                
+                document.getElementById(idAreaPix).style.display = "block";
+                document.getElementById(idTextoPix).value = dados.qr_code;
+
+            } catch (erro) {
+                console.error(erro);
+                alert('Infelizmente ocorreu um erro ao conectar com o servidor de pagamentos.');
+                botao.innerText = "Comprar via Pix";
+                botao.disabled = false;
+            }
+        }
+    </script>
+
+</body>
+</html>
