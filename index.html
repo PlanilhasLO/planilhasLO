@@ -1,4 +1,3 @@
-index.html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,6 +9,16 @@ index.html
         header { background: #1b4d3e; color: white; padding: 40px 20px; border-radius: 8px; margin-bottom: 30px; }
         header h1 { margin: 0; font-size: 36px; }
         header p { margin: 10px 0 0 0; opacity: 0.9; }
+        
+        /* Banner de Assinatura Mensal (Destaque topo) */
+        .banner-clube { background: linear-gradient(135deg, #1b4d3e, #27ae60); color: white; padding: 30px; border-radius: 12px; max-width: 900px; margin: 0 auto 40px auto; box-shadow: 0 6px 15px rgba(0,0,0,0.1); text-align: center; }
+        .banner-clube h2 { margin: 0; font-size: 28px; }
+        .banner-clube p { font-size: 16px; margin: 10px 0 20px 0; opacity: 0.9; }
+        .btn-assinar { display: inline-block; background: #ffffff; color: #1b4d3e; text-decoration: none; padding: 15px 35px; font-size: 18px; font-weight: bold; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.2s; }
+        .btn-assinar:hover { transform: scale(1.05); background: #f8fafc; }
+        
+        /* Vitrine de Produtos Avulsos */
+        .secao-titulo { font-size: 24px; color: #1b4d3e; margin-bottom: 20px; font-weight: bold; }
         .vitrine { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 10px; }
         .produto-card { background: white; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
         .produto-card h3 { margin-top: 0; color: #1b4d3e; font-size: 20px; }
@@ -19,7 +28,6 @@ index.html
         .btn-comprar { background: #27ae60; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s; }
         .btn-comprar:hover { background: #219152; }
         
-        /* Área onde o Pix vai aparecer na tela */
         .area-pix { margin-top: 20px; padding: 15px; background: #e8f8f5; border: 1px dashed #27ae60; border-radius: 8px; display: none; text-align: center; }
         .codigo-copia-cola { width: 100%; padding: 8px; background: white; border: 1px solid #ccc; font-family: monospace; font-size: 12px; margin-top: 10px; }
     </style>
@@ -28,8 +36,18 @@ index.html
 
     <header>
         <h1>PlanilhasLO</h1>
-        <p>Ferramentas de Gestão Descomplicadas para o seu Negócio</p>
+        <p>Gestão Descomplicada para Alavancar o seu Negócio</p>
     </header>
+
+    <!-- BANNER DO PLANO MENSAL -->
+    <div class="banner-clube">
+        <h2>Clube PlanilhasLO 🚀</h2>
+        <p>Tenha acesso ilimitado a TODAS as nossas planilhas profissionais + atualizações por um valor fixo mensal.</p>
+        <div style="font-size: 32px; font-weight: bold; margin-bottom: 15px;">R$ 30,00 <span style="font-size: 16px; font-weight: normal;">/ mês</span></div>
+        <a href="COLE_AQUI_O_LINK_DA_KIWIFY" target="_blank" class="btn-assinar">Assinar Plano Mensal</a>
+    </div>
+
+    <div class="secao-titulo">Prefere comprar apenas uma ferramenta avulsa?</div>
 
     <main class="vitrine">
         
@@ -37,14 +55,14 @@ index.html
         <div class="produto-card">
             <div>
                 <h3>Fluxo de Caixa Empresarial</h3>
-                <p>Controle suas entradas e saídas diárias, organize contas a pagar e veja o saldo operacional do mês.</p>
+                <p>Controle suas entradas e saídas diárias, organize contas a pagar e veja o lucro líquido real do mês.</p>
             </div>
             <div>
-                <div class="preco">R$ 39,90</div>
+                <div class="preco">R$ 40,00</div>
                 <input type="email" id="email-fluxo" class="input-email" placeholder="Seu e-mail para receber">
-                <button class="btn-comprar" id="btn-fluxo" onclick="iniciarCompra('Fluxo de Caixa', 'email-fluxo', 39.90, 'btn-fluxo')">Comprar via Pix</button>
+                <button class="btn-comprar" id="btn-fluxo" onclick="iniciarCompra('Fluxo de Caixa', 'email-fluxo', 40.00, 'btn-fluxo')">Comprar via Pix</button>
                 <div id="pix-fluxo" class="area-pix">
-                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código:</p>
                     <textarea id="texto-fluxo" class="codigo-copia-cola" readonly></textarea>
                 </div>
             </div>
@@ -54,14 +72,14 @@ index.html
         <div class="produto-card">
             <div>
                 <h3>Precificação para Hamburgueria</h3>
-                <p>Monte fichas técnicas automatizadas, calcule custos de insumos e descubra o preço ideal de venda do seu lanche.</p>
+                <p>Monte fichas técnicas avançadas, calcule custos por grama e descubra o preço ideal de venda do lanche.</p>
             </div>
             <div>
-                <div class="preco">R$ 29,90</div>
+                <div class="preco">R$ 60,00</div>
                 <input type="email" id="email-hamburgueria" class="input-email" placeholder="Seu e-mail para receber">
-                <button class="btn-comprar" id="btn-hamburgueria" onclick="iniciarCompra('Precificação para Hamburgueria', 'email-hamburgueria', 29.90, 'btn-hamburgueria')">Comprar via Pix</button>
+                <button class="btn-comprar" id="btn-hamburgueria" onclick="iniciarCompra('Precificação para Hamburgueria', 'email-hamburgueria', 60.00, 'btn-hamburgueria')">Comprar via Pix</button>
                 <div id="pix-hamburgueria" class="area-pix">
-                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código:</p>
                     <textarea id="texto-hamburgueria" class="codigo-copia-cola" readonly></textarea>
                 </div>
             </div>
@@ -71,14 +89,14 @@ index.html
         <div class="produto-card">
             <div>
                 <h3>Controle de Estoque e Vendas</h3>
-                <p>Gerencie a entrada de mercadorias, avise quando um produto estiver acabando e registre suas vendas diárias.</p>
+                <p>Gerencie entradas e saídas de mercadorias, configure alertas de estoque baixo e registre vendas diárias.</p>
             </div>
             <div>
-                <div class="preco">R$ 34,90</div>
+                <div class="preco">R$ 40,00</div>
                 <input type="email" id="email-estoque" class="input-email" placeholder="Seu e-mail para receber">
-                <button class="btn-comprar" id="btn-estoque" onclick="iniciarCompra('Controle de Estoque', 'email-estoque', 34.90, 'btn-estoque')">Comprar via Pix</button>
+                <button class="btn-comprar" id="btn-estoque" onclick="iniciarCompra('Controle de Estoque', 'email-estoque', 40.00, 'btn-estoque')">Comprar via Pix</button>
                 <div id="pix-estoque" class="area-pix">
-                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código abaixo:</p>
+                    <p style="margin:0; font-weight:bold; color:#1b4d3e;">Pix Gerado! Copie o código:</p>
                     <textarea id="texto-estoque" class="codigo-copia-cola" readonly></textarea>
                 </div>
             </div>
@@ -100,7 +118,6 @@ index.html
             botao.disabled = true;
 
             try {
-                // Envia os dados para o seu servidor backend (server.js)
                 const resposta = await fetch('/api/criar-pix', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -116,7 +133,6 @@ index.html
                     return;
                 }
 
-                // Esconde o botão de compra e mostra o código Pix gerado
                 botao.style.display = "none";
                 
                 const idAreaPix = idBotao.replace('btn-', 'pix-');
@@ -127,7 +143,7 @@ index.html
 
             } catch (erro) {
                 console.error(erro);
-                alert('Infelizmente ocorreu um erro ao conectar com o servidor de pagamentos.');
+                alert('Ocorreu um erro ao conectar com o servidor de pagamentos.');
                 botao.innerText = "Comprar via Pix";
                 botao.disabled = false;
             }
